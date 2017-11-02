@@ -6,7 +6,7 @@ import { IConnectionOptions } from './connection/connection.options';
 import { ConnectionTransport } from './connection/connection.transport';
 import { Observable } from 'rxjs/Observable';
 import { ConnectionStatus } from './connection/connection.status';
-import { SIGNALR_JCONNECTION_TOKEN } from "./signalr.module";
+import { SIGNALR_JCONNECTION_TOKEN } from './tokens';
 
 declare var jQuery: any;
 
@@ -54,7 +54,7 @@ export class SignalR {
         // !!! important. We need to register at least one function otherwise server callbacks will not work.
         jProxy.on('noOp', function () { });
 
-        let hubConnection = new SignalRConnection(jConnection, jProxy, this._zone, configuration);
+        let hubConnection = new SignalRConnection(jConnection, jProxy, configuration, this._zone);
 
         return hubConnection;
     }
